@@ -15,9 +15,9 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 })
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const chineseName = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
-  const englishName = restaurantList.results.filter(restaurant => restaurant.name_en.toLowerCase().includes(keyword.toLowerCase()))
-  res.render('search', { chineseName, englishName, keyword })
+  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
+  const en_restaurants = restaurantList.results.filter(restaurant => restaurant.name_en.toLowerCase().includes(keyword.toLowerCase()))
+  res.render('index', { restaurants, en_restaurants, keyword })
 })
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)
